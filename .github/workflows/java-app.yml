@@ -131,5 +131,6 @@ jobs:
           APP_LONG_NAME=$APP_NAME-$APP_VERSION.jar
           echo "Deploying $APP_LONG_NAME to Artifactory..."
           curl -f -v --user "$MAVEN_USERNAME_A:$MAVEN_PASSWORD_A" \
+            -X POST \
             -T "target/$APP_LONG_NAME" \
             "$ARTIFACTORY_URL/artifactory/$JFROG_REPO_NAME/$APP_LONG_NAME"
