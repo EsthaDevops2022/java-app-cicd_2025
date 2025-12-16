@@ -19,7 +19,7 @@ env:
   AWS_REGION: ${{ secrets.AWS_REGION }}
   VAULT_URL: ${{ secrets.VAULT_URL }}
   VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
-  JFROG_REPO_NAME: project-geo
+  JFROG_REPO_NAME: project-geo-local
 
 jobs:
   sonar:
@@ -130,7 +130,7 @@ jobs:
           APP_NAME=$(grep -m2 '<artifactId>' pom.xml | tail -1 | grep -oP '(?<=>).*(?=<)')
           APP_LONG_NAME=$APP_NAME-$APP_VERSION.jar
           echo "Deploying $APP_LONG_NAME to Artifactory..."
-          curl -f -v --user "$MAVEN_USERNAME_A:$MAVEN_PASSWORD_A" \
+          curl -f -u "$MAVEN_USERNAME_A:$MAVEN_PASSWORD_A" \
             -X POST \
             -T "target/$APP_LONG_NAME" \
             "$ARTIFACTORY_URL/artifactory/$JFROG_REPO_NAME/$APP_LONG_NAME"
