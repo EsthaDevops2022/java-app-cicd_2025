@@ -118,8 +118,8 @@ jobs:
           token: ${{ secrets.VAULT_TOKEN }}
           exportEnv: true
           secrets: |
-            Vault/Secrets engines/secrets/creds/jfrog/creds/jrog username | MAVEN_USERNAME_A ;
-            Vault/Secrets engines/secrets/creds/jfrog/creds/jfrog password | MAVEN_PASSWORD_A
+           secrets/creds/jfrog username | MAVEN_USERNAME_A ;
+           secrets/creds/jfrog password | MAVEN_PASSWORD_A
 
 
       - name: Push to JFrog
